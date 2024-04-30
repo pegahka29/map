@@ -21,8 +21,27 @@ watchEffect(() => {
         if (userGeoMarker) {
             map.removeLayer(userGeoMarker)
         }
-        userGeoMarker = leaflet.marker([userMarker.value.latitude, userMarker.value.longitude]).addTo(map)
+        userGeoMarker = leaflet.marker([userMarker.value.latitude, userMarker.value.longitude]).addTo(map);
+        nearbyMarkers.value.forEach(({latitude, longitude}) => {
+            leaflet.marker([latitude, longitude]).addTo(map)
+            nearbyMarkers.value.push({
+                latitude,
+                longitude,
+            })
+        })
+        map.addEventListener('click', (e) => {
+            const {lat: latitude, lng: longitude} = e.latlng
+            leaflet.marker([latitude, longitude]).addTo(map)
+            nearbyMarkers.value.push({
+                latitude,
+                longitude,
+            })
+        })
         map.setView([userMarker.value.latitude, userMarker.value.longitude], 13)
+        const marker = userGeoMarker.getElement();
+        if (marker) {
+            marker.style.filter = "hue-rotate(120deg)"
+        }
     }
 
 })
