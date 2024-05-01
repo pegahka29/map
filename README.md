@@ -1,4 +1,5 @@
-# Nuxt 3 Minimal Starter
+# Nuxt 3 Minimal Map
+creating map in Vue.js with Leaflet.js
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
