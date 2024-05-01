@@ -16,7 +16,8 @@ onMounted(() => {
         (position) => {
             // Success: User's location obtained
             const { latitude, longitude } = position.coords;
-            console.log('User location:', latitude, longitude);
+            userMarker.value.latitude = latitude;
+            userMarker.value.longitude = longitude;
         },
         (error) => {
             // Error: Unable to obtain user's location
@@ -46,7 +47,6 @@ onMounted(() => {
             }
         }
     });
-
     firstLocation = leaflet.latLng(userMarker.value.latitude, userMarker.value.longitude);
 });
 
